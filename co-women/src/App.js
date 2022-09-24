@@ -1,15 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import * as React from "react";
+import Header from "./components/header/header";
+import HomePage from "./components/home-page/home-page";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          BORA GALERA MULHERES
-        </p>
-      </header>
+      <Header />
+      <HomePage />
     </div>
   );
 }
