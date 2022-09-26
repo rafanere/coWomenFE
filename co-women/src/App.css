@@ -27,6 +27,23 @@
   justify-content: center;
 }
 
+.App-cards{
+  display: flex;
+  flex-direction: row;
+}
+
+.App-card{
+  max-width: 30%;
+  margin: auto;
+  border-radius: 10;
+  padding: 10;
+
+}
+
+.App-media{
+  border-radius: 10;
+}
+
 .App-link {
   color: #61dafb;
 }
