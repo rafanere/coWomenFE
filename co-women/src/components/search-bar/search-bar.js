@@ -4,7 +4,7 @@ import Search from "@mui/icons-material/Search";
 export default function SearchBar() {
   return (
     <TextField
-      className="searchBar"
+      fullWidth={true}
       variant="outlined"
       type={"search"}
       placeholder="Pesquise por tipo de serviço"

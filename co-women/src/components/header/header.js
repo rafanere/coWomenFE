@@ -1,11 +1,14 @@
 import logo from "../../logo.svg";
 import MenuList from "../menu-list/menu-list";
+import { HeaderContainer } from "../../styles/header-container";
 
 export default function Header() {
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <MenuList className="App-menu" />
-    </header>
+    <HeaderContainer>
+      <a href="/">
+        <img src={logo} className="App-logo" alt="logo" />
+      </a>
+      <MenuList style={{ paddingTop: "15vw", paddingBottom: "1vw" }} />
+    </HeaderContainer>
   );
 }
