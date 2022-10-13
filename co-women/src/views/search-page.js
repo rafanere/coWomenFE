@@ -13,12 +13,22 @@ export default function SearchPage() {
         <InputLabel>Pesquisa</InputLabel>
         <SearchBar />
       </Container>
-      <Container>
-        <div className="App-cards">
-          <StyledCard />
-          <StyledCard />
-          <StyledCard />
-        </div>
+      <Container
+        sx={{
+          display: "flex",
+          flexFlow: "row wrap",
+          rowGap: "2vh",
+        }}
+      >
+        <StyledCard />
+        <StyledCard />
+        <StyledCard />
+        <StyledCard />
+        <StyledCard />
+        <StyledCard />
+        <StyledCard />
+        <StyledCard />
+        <StyledCard />
       </Container>
     </div>
   );
