@@ -14,13 +14,6 @@
   display: block;
 }
 
-.App-content {
-  vertical-align: bottom;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
 .App-cards{
   display: flex;

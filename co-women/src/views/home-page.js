@@ -1,4 +1,3 @@
-import { InputLabel } from "@mui/material";
 import Header from "../components/header/header";
 import SearchBar from "../components/search-bar/search-bar";
 import { CenteredContainer } from "../styles/centered-container";
