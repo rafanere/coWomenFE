@@ -2,14 +2,12 @@ import { InputLabel } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
 import StyledCard from "../components/card/styled-card";
-import Header from "../components/header/header";
 import SearchBar from "../components/search-bar/search-bar";
 
 export default function SearchPage() {
   return (
-    <div>
-      <Header />
-      <Container>
+    <>
+      <Container sx={{padding: "2vh"}}>
         <InputLabel>Pesquisa</InputLabel>
         <SearchBar />
       </Container>
@@ -30,6 +28,6 @@ export default function SearchPage() {
         <StyledCard />
         <StyledCard />
       </Container>
-    </div>
+    </>
   );
 }

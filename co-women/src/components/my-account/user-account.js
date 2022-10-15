@@ -6,7 +6,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ChatIcon from "@mui/icons-material/Chat";
 import EventIcon from "@mui/icons-material/Event";
 import LockIcon from "@mui/icons-material/Lock";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -19,11 +19,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -56,22 +52,22 @@ export default function UserAccount() {
 
       <TabPanel value={value} index={0}>
         <Container maxWidth="vh" border="solid">
-          <Box sx={{ bgcolor: "#fffaaa", height: "25vh" }} />
+          <Box sx={{ bgcolor: "#fffaaa", height: "50vh" }} />
         </Container>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Container maxWidth="vh" border="solid">
-          <Box sx={{ bgcolor: "#afafaf", height: "25vh" }} />
+          <Box sx={{ bgcolor: "#afafaf", height: "50vh" }} />
         </Container>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Container maxWidth="vh" border="solid">
-          <Box sx={{ bgcolor: "#fadada", height: "25vh" }} />
+          <Box sx={{ bgcolor: "#fadada", height: "50vh" }} />
         </Container>
       </TabPanel>
       <TabPanel value={value} index={3}>
         <Container maxWidth="vh" border="solid">
-          <Box sx={{ bgcolor: "#cfe8fc", height: "25vh" }} />
+          <Box sx={{ bgcolor: "#cfe8fc", height: "50vh" }} />
         </Container>
       </TabPanel>
     </Container>
