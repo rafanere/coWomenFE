@@ -8,7 +8,7 @@ export default function Header() {
       <a href="/">
         <img src={logo} className="App-logo" alt="logo" />
       </a>
-      <MenuList style={{ paddingTop: "15vw", paddingBottom: "1vw" }} />
+      <MenuList />
     </HeaderContainer>
   );
 }

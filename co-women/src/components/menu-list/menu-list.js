@@ -20,12 +20,11 @@ export default function MenuList() {
     setAnchorEl(null);
   };
   return (
-    <Box flex-direction={"column"}>
-      <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
+      <FormLabel>Olá, Fulana!</FormLabel>
+      <IconButton onClick={handleClick} size="small" sx={{ ml: 2, margin: "0"}}>
         <Avatar sx={{ width: 32, height: 32 }}></Avatar>
       </IconButton>
-      <FormLabel>Olá, Fulana!</FormLabel>
-
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -35,7 +34,7 @@ export default function MenuList() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <Link to="/my-account"  style={{ textDecoration: 'none' }}>
+        <Link to="/my-account" style={{ textDecoration: "none" }}>
           <MenuItem>
             <ListItemIcon>
               <Settings fontSize="small" />
@@ -43,7 +42,6 @@ export default function MenuList() {
             Minha Conta
           </MenuItem>
         </Link>
-
         <MenuItem>
           <ListItemIcon>
             <Logout fontSize="small" />
