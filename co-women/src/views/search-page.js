@@ -1,13 +1,30 @@
 import { InputLabel } from "@mui/material";
 import { Container } from "@mui/system";
-import React from "react";
+import { React, useEffect, useState } from "react";
 import StyledCard from "../components/card/styled-card";
 import SearchBar from "../components/search-bar/search-bar";
+import { AdsList } from "../components/services_components/AdsList";
+import { adsService } from "../services/ads-service";
 
 export default function SearchPage() {
+  const [ads, setAds] = useState([]);
+
+  const fetchAds = async () => {
+    const { data } = await adsService.getService();
+    setAds(data);
+    console.log(data);
+  }
+
+  useEffect(() => {
+    fetchAds();
+  }, []);
+
   return (
     <>
-      <Container sx={{padding: "2vh"}}>
+      <div>
+        <AdsList ads={ads} />
+      </div>
+      <Container sx={{ padding: "2vh" }}>
         <InputLabel>Pesquisa</InputLabel>
         <SearchBar />
       </Container>
@@ -18,6 +35,7 @@ export default function SearchPage() {
           rowGap: "2vh",
         }}
       >
+
         <StyledCard />
         <StyledCard />
         <StyledCard />
