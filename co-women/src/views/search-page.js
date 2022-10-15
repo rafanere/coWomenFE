@@ -3,7 +3,6 @@ import { Container } from "@mui/system";
 import { React, useEffect, useState } from "react";
 import StyledCard from "../components/card/styled-card";
 import SearchBar from "../components/search-bar/search-bar";
-import { AdsList } from "../components/services_components/AdsList";
 import { adsService } from "../services/ads-service";
 
 export default function SearchPage() {
@@ -12,8 +11,7 @@ export default function SearchPage() {
   const fetchAds = async () => {
     const { data } = await adsService.getService();
     setAds(data);
-    console.log(data);
-  }
+  };
 
   useEffect(() => {
     fetchAds();
@@ -21,9 +19,6 @@ export default function SearchPage() {
 
   return (
     <>
-      <div>
-        <AdsList ads={ads} />
-      </div>
       <Container sx={{ padding: "2vh" }}>
         <InputLabel>Pesquisa</InputLabel>
         <SearchBar />
@@ -35,16 +30,15 @@ export default function SearchPage() {
           rowGap: "2vh",
         }}
       >
-
-        <StyledCard />
-        <StyledCard />
-        <StyledCard />
-        <StyledCard />
-        <StyledCard />
-        <StyledCard />
-        <StyledCard />
-        <StyledCard />
-        <StyledCard />
+        {ads.map((a) => (
+          <StyledCard
+            id={a._id}
+            title={a.title}
+            description={a.description}
+            image={a.image}
+            avaliacao={a.avaliacao}
+          />
+        ))}
       </Container>
     </>
   );

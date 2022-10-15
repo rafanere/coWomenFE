@@ -12,9 +12,11 @@ import { CenteredContainer } from "../../styles/centered-container";
 
 const cardStyle = {
   minWidth: "300px",
+  minHeight: "180px",
+  maxHeight: "200px",
   alignItems: "center",
   justify: "center",
-  padding: "2vh"
+  padding: "2vh",
 };
 
 const cardMediaStyle = {
@@ -23,7 +25,13 @@ const cardMediaStyle = {
   padding: "3px",
 };
 
-export default function StyledCard() {
+export default function StyledCard({
+  id,
+  title,
+  description,
+  image,
+  avaliacao,
+}) {
   return (
     <Card
       className="App-card"
@@ -32,12 +40,8 @@ export default function StyledCard() {
     >
       <Grid container padding="3px" spacing={2}>
         <Grid item xs={4} style={cardMediaStyle}>
-          <CardMedia
-            component="img"
-            image="https://picsum.photos/200/"
-            title="teste do teste"
-          />
-          <Rating value={4.5} precision={0.5} size="small" readOnly />
+          <CardMedia component="img" image={image} title="teste do teste" />
+          <Rating value={avaliacao} precision={0.5} size="small" readOnly />
         </Grid>
         <Grid item xs={8}>
           <CardContent
@@ -54,7 +58,7 @@ export default function StyledCard() {
               component="div"
               align="left"
             >
-              Lorem ipsum dolor
+              {title}
             </Typography>
             <Typography
               gutterBottom
@@ -69,10 +73,7 @@ export default function StyledCard() {
                 WebkitBoxOrient: "vertical",
               }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-              blanditiis tenetur unde suscipit, quam beatae rerum inventore
-              consectetur, neque doloribus, cupiditate numquam dignissimos
-              laborum fugiat deleniti? Eum quasi quidem quibusdam.
+              {description}
             </Typography>
           </CardContent>
         </Grid>

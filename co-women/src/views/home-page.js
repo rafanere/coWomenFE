@@ -8,9 +8,7 @@ export default function HomePage() {
     <div>
       <div>
         <section>
-        <ul>
-            {adsService.getService}
-        </ul>
+          <ul>{adsService.getService}</ul>
         </section>
       </div>
       <LeftAlignedContainer style={{ paddingTop: "5vw", paddingBottom: "1vw" }}>
@@ -18,13 +16,13 @@ export default function HomePage() {
       </LeftAlignedContainer>
       <CenteredContainer>
         <SearchBar />
-        {/* <p>OU</p>
+        <p>OU</p>
         <p>
-          Se for uma prestadora de serviços, clique{" "}
-          <a className="App-link" href="/">
-            aqui
-          </a>
-        </p>*/}
+          <a className="App-link" href="/search">
+            Clique aqui
+          </a>{" "}
+          para ver todos os anúncios cadastrados
+        </p>
       </CenteredContainer>
     </div>
   );
