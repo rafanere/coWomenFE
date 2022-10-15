@@ -1,5 +1,6 @@
 import { InputAdornment, TextField } from "@mui/material";
 import Search from "@mui/icons-material/Search";
+import { Link } from "react-router-dom";
 
 export default function SearchBar() {
   return (
@@ -10,9 +11,11 @@ export default function SearchBar() {
       placeholder="Pesquise por tipo de serviço"
       InputProps={{
         startAdornment: (
-          <InputAdornment position="start">
-            <Search />
-          </InputAdornment>
+          <Link to="/search" style={{ textDecoration: 'none' }}>
+            <InputAdornment position="start">
+              <Search />
+            </InputAdornment>
+          </Link>
         ),
       }}
     />
