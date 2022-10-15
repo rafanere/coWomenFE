@@ -6,8 +6,8 @@ import SearchBar from "../components/search-bar/search-bar";
 
 export default function SearchPage() {
   return (
-    <div>
-      <Container>
+    <>
+      <Container sx={{padding: "2vh"}}>
         <InputLabel>Pesquisa</InputLabel>
         <SearchBar />
       </Container>
@@ -28,6 +28,6 @@ export default function SearchPage() {
         <StyledCard />
         <StyledCard />
       </Container>
-    </div>
+    </>
   );
 }

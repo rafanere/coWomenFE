@@ -10,9 +10,9 @@ export default function SearchBar() {
       type={"search"}
       placeholder="Pesquise por tipo de serviço"
       InputProps={{
-        startAdornment: (
+        endAdornment: (
           <Link to="/search" style={{ textDecoration: 'none' }}>
-            <InputAdornment position="start">
+            <InputAdornment position="end">
               <Search />
             </InputAdornment>
           </Link>
