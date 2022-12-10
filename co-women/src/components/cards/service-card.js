@@ -8,7 +8,6 @@ import {
   Rating,
   Typography,
 } from "@mui/material";
-import { CenteredContainer } from "../../styles/centered-container";
 
 const cardStyle = {
   minWidth: "300px",
@@ -25,11 +24,12 @@ const cardMediaStyle = {
   padding: "3px",
 };
 
-export default function StyledCard({
+export default function ServiceCard({
   id,
   title,
-  description,
+  status,
   image,
+  date,
   avaliacao,
 }) {
   return (
@@ -40,7 +40,7 @@ export default function StyledCard({
     >
       <Grid container padding="3px" spacing={2}>
         <Grid item xs={4} style={cardMediaStyle}>
-          <CardMedia component="img" image={image} title="teste do teste" />
+          <CardMedia component="img" image={image} />
           <Rating value={avaliacao} precision={0.5} size="small" readOnly />
         </Grid>
         <Grid item xs={8}>
@@ -64,30 +64,32 @@ export default function StyledCard({
               gutterBottom
               variant="body2"
               color="text.secondary"
-              align="justify"
-              sx={{
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: "5",
-                WebkitBoxOrient: "vertical",
-              }}
+              align="left"
             >
-              {description}
+              Data: {date}
+            </Typography>
+            <Typography
+              gutterBottom
+              variant="body2"
+              color="text.secondary"
+              align="left"
+            >
+              Status: {status}
             </Typography>
           </CardContent>
         </Grid>
       </Grid>
-      <CenteredContainer>
         <CardActions>
           <Button variant="contained" size="small">
-            Detalhes
+            Avaliar
           </Button>
           <Button variant="contained" size="small">
-            Contato
+            Denunciar
+          </Button>
+          <Button variant="contained" size="small">
+            Outro
           </Button>
         </CardActions>
-      </CenteredContainer>
     </Card>
   );
 }

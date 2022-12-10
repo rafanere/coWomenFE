@@ -5,6 +5,8 @@ import MyAccount from "./views/my-account";
 import HomePage from "./views/home-page";
 import SearchPage from "./views/search-page";
 import Header from "./components/header/header";
+import LoginPage from "./views/login-page";
+import AdsDetailsPage from "./views/ads-details-page";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/my-account" element={<MyAccount />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/ads-details" element={<AdsDetailsPage />} />
         </Routes>
       </Router>
     </div>
