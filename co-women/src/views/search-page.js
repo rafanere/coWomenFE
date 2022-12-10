@@ -1,7 +1,7 @@
 import { InputLabel } from "@mui/material";
 import { Container } from "@mui/system";
 import { React, useEffect, useState } from "react";
-import StyledCard from "../components/card/styled-card";
+import AdsCard from "../components/cards/ads-card";
 import SearchBar from "../components/search-bar/search-bar";
 import { adsService } from "../services/ads-service";
 
@@ -31,7 +31,7 @@ export default function SearchPage() {
         }}
       >
         {ads.map((a) => (
-          <StyledCard
+          <AdsCard
             id={a._id}
             title={a.title}
             description={a.description}

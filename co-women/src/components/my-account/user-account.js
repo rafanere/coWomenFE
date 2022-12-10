@@ -7,6 +7,34 @@ import ChatIcon from "@mui/icons-material/Chat";
 import EventIcon from "@mui/icons-material/Event";
 import LockIcon from "@mui/icons-material/Lock";
 import { Box, Container } from "@mui/material";
+import PersonalData from "./personal-data";
+import ServiceCard from "../cards/service-card";
+
+const serviceCards = [
+  {
+    nome: "A B C",
+    data: "01/03/2022",
+    status: "Concluído",
+    imagem:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Nasa_blue_marble.jpg/220px-Nasa_blue_marble.jpg",
+  },
+
+  {
+    nome: "X Y Z",
+    data: "01/04/2022",
+    status: "Concluído",
+    imagem:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Nasa_blue_marble.jpg/220px-Nasa_blue_marble.jpg",
+  },
+
+  {
+    nome: "X P T O",
+    data: "01/05/2022",
+    status: "Concluído",
+    imagem:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Nasa_blue_marble.jpg/220px-Nasa_blue_marble.jpg",
+  },
+];
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -19,7 +47,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box sx={{ p: 1 }}>{children}</Box>}
     </div>
   );
 }
@@ -41,6 +69,7 @@ export default function UserAccount() {
     <Container
       sx={{
         boxShadow: 1,
+        minWidth: "90%",
       }}
     >
       <Tabs value={value} onChange={handleChange} variant="fullWidth">
@@ -52,22 +81,39 @@ export default function UserAccount() {
 
       <TabPanel value={value} index={0}>
         <Container maxWidth="vh" border="solid">
-          <Box sx={{ bgcolor: "#fffaaa", height: "50vh" }} />
+          <Box>
+            <PersonalData />
+          </Box>
         </Container>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Container maxWidth="vh" border="solid">
-          <Box sx={{ bgcolor: "#afafaf", height: "50vh" }} />
+          <Container
+            sx={{
+              display: "flex",
+              flexFlow: "row wrap",
+              rowGap: "2vh",
+            }}
+          >
+            {serviceCards.map((c) => (
+              <ServiceCard
+                title={c.nome}
+                image={c.imagem}
+                status={c.status}
+                date={c.data}
+              />
+            ))}
+          </Container>
         </Container>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Container maxWidth="vh" border="solid">
-          <Box sx={{ bgcolor: "#fadada", height: "50vh" }} />
+          <Box sx={{ height: "50vh" }}>Em construção</Box>
         </Container>
       </TabPanel>
       <TabPanel value={value} index={3}>
         <Container maxWidth="vh" border="solid">
-          <Box sx={{ bgcolor: "#cfe8fc", height: "50vh" }} />
+          <Box sx={{ height: "50vh" }}>Em construção</Box>
         </Container>
       </TabPanel>
     </Container>
