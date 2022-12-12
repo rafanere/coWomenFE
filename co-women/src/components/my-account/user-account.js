@@ -12,6 +12,7 @@ import ServiceCard from "../cards/service-card";
 
 const serviceCards = [
   {
+    id: 0,
     nome: "A B C",
     data: "01/03/2022",
     status: "Concluído",
@@ -20,6 +21,7 @@ const serviceCards = [
   },
 
   {
+    id: 1,
     nome: "X Y Z",
     data: "01/04/2022",
     status: "Concluído",
@@ -28,6 +30,7 @@ const serviceCards = [
   },
 
   {
+    id: 2,
     nome: "X P T O",
     data: "01/05/2022",
     status: "Concluído",
@@ -97,6 +100,7 @@ export default function UserAccount() {
           >
             {serviceCards.map((c) => (
               <ServiceCard
+                id={(c.id)}
                 title={c.nome}
                 image={c.imagem}
                 status={c.status}

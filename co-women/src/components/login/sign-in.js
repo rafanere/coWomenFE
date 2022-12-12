@@ -16,11 +16,17 @@ export default function SignIn() {
         <Typography gutterBottom variant="h6" component="div" align="left">
           Já é cadastrada?
         </Typography>
-        <TextField required label="Email" type="email" />
         <TextField
+          required
+          label="Email"
+          type="email"
+          inputProps={{ maxLength: 50 }}
+        />
+        <TextField
+          required
           label="Senha"
           type="password"
-          autoComplete="current-password"
+          inputProps={{ maxLength: 50 }}
         />
         <Button variant="contained">Logar</Button>
         <Link href="#">Esqueci minha senha</Link>

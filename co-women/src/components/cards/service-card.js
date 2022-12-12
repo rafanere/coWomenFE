@@ -8,6 +8,8 @@ import {
   Rating,
   Typography,
 } from "@mui/material";
+import React from "react";
+import EvaluationModal from "../evaluation/evaluation-modal";
 
 const cardStyle = {
   minWidth: "300px",
@@ -24,6 +26,7 @@ const cardMediaStyle = {
   padding: "3px",
 };
 
+
 export default function ServiceCard({
   id,
   title,
@@ -34,6 +37,7 @@ export default function ServiceCard({
 }) {
   return (
     <Card
+      key={id}
       className="App-card"
       style={cardStyle}
       sx={{ display: "flex", flexWrap: "wrap" }}
@@ -79,17 +83,9 @@ export default function ServiceCard({
           </CardContent>
         </Grid>
       </Grid>
-        <CardActions>
-          <Button variant="contained" size="small">
-            Avaliar
-          </Button>
-          <Button variant="contained" size="small">
-            Denunciar
-          </Button>
-          <Button variant="contained" size="small">
-            Outro
-          </Button>
-        </CardActions>
+      <CardActions>
+        <EvaluationModal title={title} date={date}/>
+      </CardActions>
     </Card>
   );
 }

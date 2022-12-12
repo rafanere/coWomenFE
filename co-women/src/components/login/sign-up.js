@@ -27,7 +27,7 @@ export default function SignUp() {
           Deseja se cadastrar?
         </Typography>
         <FormControl>
-          <RadioGroup row aria-labelledby="radio-group" defaultValue="cliente">
+          <RadioGroup row aria-labelledby="radio-group" defaultValue="cliente" la>
             <FormLabel id="radio-group">Perfil: </FormLabel>
             <FormControlLabel
               value="cliente"
@@ -46,25 +46,33 @@ export default function SignUp() {
           label="Nome"
           type="text"
           style={{ maxWidth: "400px" }}
+          inputProps={{ maxLength: 50 }}
         />
         <TextField
           required
           label="CPF/CNPJ"
           type="text"
           style={{ maxWidth: "180px" }}
+          inputProps={{ maxLength: 14 }}
         />
         <TextField
           required
           label="Email"
           type="email"
           style={{ maxWidth: "350px" }}
+          inputProps={{ maxLength: 50 }}
         />
-        <TextField required label="Senha" type="password" autoComplete="" />
+        <TextField
+          required
+          label="Senha"
+          type="password"
+          inputProps={{ maxLength: 50 }}
+        />
         <TextField
           required
           label="Repita a senha"
           type="password"
-          autoComplete="current-password"
+          inputProps={{ maxLength: 50 }}
         />
         <Button variant="contained">Cadastrar</Button>
       </Container>
