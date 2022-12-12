@@ -9,6 +9,9 @@ const style = {
   alignItems: "left",
   justifyContent: "left",
   paddingInline: "10vh",
+  width: "450px",
+  margin: 1,
+  padding: 1
 };
 
 export default function SignIn() {
@@ -45,6 +48,7 @@ export default function SignIn() {
           inputProps={{ maxLength: 50 }}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          sx={{ mb: 1 }}
         />
         <TextField
           required
@@ -53,11 +57,14 @@ export default function SignIn() {
           inputProps={{ maxLength: 50 }}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          sx={{ mb: 1 }}
         />
-        <Button variant="contained" type="submit">
-          Logar
-        </Button>
-        <Link href="#">Esqueci minha senha</Link>
+        <Container sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Button variant="contained" type="submit" sx={{mr: 1}}>
+            Logar
+          </Button>
+          <Link href="#">Esqueci minha senha</Link>
+        </Container>
       </Container>
     </>
   );
