@@ -7,6 +7,8 @@ import SearchPage from "./views/search-page";
 import Header from "./components/header/header";
 import LoginPage from "./views/login-page";
 import AdsDetailsPage from "./views/ads-details-page";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.min.css";
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/ads-details" element={<AdsDetailsPage />} />
         </Routes>
+        <ToastContainer position="top-right" autoClose={5000}/>
       </Router>
     </div>
   );

@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CardActions,
   CardContent,
@@ -84,7 +83,7 @@ export default function ServiceCard({
         </Grid>
       </Grid>
       <CardActions>
-        <EvaluationModal title={title} date={date}/>
+        <EvaluationModal/>
       </CardActions>
     </Card>
   );

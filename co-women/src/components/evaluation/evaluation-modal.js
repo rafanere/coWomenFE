@@ -6,6 +6,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { AppBar, Rating, TextField, Toolbar, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import { CenteredContainer } from "../../styles/centered-container";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const style = {
   position: "absolute",
@@ -17,27 +19,41 @@ const style = {
   boxShadow: 24,
 };
 
-export default function EvaluationModal(title, date) {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState(2);
+export default function EvaluationModal() {
+  const [open, setOpen] = useState(false);
+  const [rating, setRating] = useState(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [comment, setComment] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    let formErrors = false;
+
+    if (rating < 1) {
+      formErrors = true;
+      toast.error("Selecione o número de estrelas para avaliação");
+    }
+
+    if (comment.length < 10) {
+      formErrors = true;
+      toast.error("Comentário deve ter pelo menos 10 caracteres");
+    }
+
+    if (formErrors) return;
+  }
 
   return (
     <div>
       <Button variant="contained" size="small" onClick={handleOpen}>
         Avaliar
       </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <AppBar position="static">
             <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography id="modal-modal-title" variant="body1" component="h2">
+              <Typography variant="body1" component="h2">
                 Avalie o serviço prestado
               </Typography>
               <Button onClick={handleClose} sx={{ color: "white" }}>
@@ -45,14 +61,14 @@ export default function EvaluationModal(title, date) {
               </Button>
             </Toolbar>
           </AppBar>
-          <Container id="modal-modal-description" sx={{ p: 1 }}>
+          <Container sx={{ p: 1 }} component="form" onSubmit={handleSubmit}>
             <Container>
-              Nota:
+              <Typography variant="subtitle2">
+                Quantas estrelas merece o serviço prestado?
+              </Typography>
               <Rating
-                value={value}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
               />
             </Container>
             <Container sx={{ mt: 1, mb: 1 }}>
@@ -60,13 +76,15 @@ export default function EvaluationModal(title, date) {
                 multiline
                 minRows={2}
                 maxRows={2}
-                placeholder="Comentário (opcional)"
+                placeholder="Comentário"
                 style={{ minWidth: "100%" }}
                 inputProps={{ maxLength: 150 }}
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
               />
             </Container>
             <CenteredContainer>
-              <Button variant="contained" size="small">
+              <Button variant="contained" size="small" type="submit">
                 Enviar avaliação
               </Button>
             </CenteredContainer>
