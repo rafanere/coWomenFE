@@ -1,29 +1,15 @@
 import {
   Button,
   Card,
-  CardActions,
   CardContent,
   CardMedia,
   Container,
-  Grid,
   Rating,
   Typography,
 } from "@mui/material";
 import EvaluationCard from "../cards/evaluation-card";
 import QuestionAnswerCard from "../cards/question-answer-card";
 import QuestionForm from "../question/question-form";
-
-const cardStyle = {
-  alignItems: "center",
-  justify: "center",
-  padding: "2vh",
-};
-
-const cardMediaStyle = {
-  maxWidth: "100px",
-  alignItems: "center",
-  padding: "3px",
-};
 
 const evaluations = [
   {
@@ -79,110 +65,125 @@ export default function AdsDetails({
   avaliacao,
 }) {
   return (
-    <>
-      <Card
-        style={cardStyle}
-        sx={{ display: "flex", flexWrap: "wrap", alignItems: "left" }}
+    <Card
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        alignItems: "left",
+        padding: 0,
+        margin: 0,
+      }}
+    >
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          padding: 0,
+          margin: 0,
+        }}
       >
-        <Grid container padding="3px">
-          <Grid item xs={4} style={cardMediaStyle}>
-            <CardMedia
-              component="img"
-              image={image}
-              title="teste do teste"
-              height="140px"
-            />
-          </Grid>
-          <Grid item xs={8}>
-            <CardContent
-              sx={{
-                padding: "3px",
-                "&:last-child": {
-                  paddingBottom: "3px",
-                },
-              }}
-            >
-              <Typography
-                gutterBottom
-                variant="h4"
-                component="div"
-                align="left"
-              >
-                {title}
-              </Typography>
-              <Typography
-                gutterBottom
-                variant="body2"
-                color="text.secondary"
-                align="justify"
-                sx={{
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  display: "-webkit-box",
-                }}
-              >
-                {description}
-              </Typography>
-            </CardContent>
-          </Grid>
-        </Grid>
-        <CardActions>
-          <Button variant="contained" size="medium">
-            Contato
-          </Button>
-        </CardActions>
-
-        <Container sx={{ display: "flex", flexDirection: "column" }}>
-          <Typography variant="h6">Perguntas</Typography>
-          <QuestionForm />
-        </Container>
-        <Container
+        <CardMedia
+          component="img"
+          title="foto do perfil"
+          image={image}
+          sx={{ height: "100px", width: "100px", margin: 1}}
+        />
+        <CardContent
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyItems: "left",
-            minWidth: "80%",
+            padding: "3px",
+            "&:last-child": {
+              paddingBottom: "3px",
+            },
           }}
         >
-          {questionAnswers.map((item) => (
-            <QuestionAnswerCard
-              item={item.id}
-              question={item.question}
-              answer={item.answer}
-              dateQuestion={item.dateQuestion}
-              dateAnswer={item.dateAnswer}
-            />
-          ))}
-        </Container>
-        <Container sx={{ display: "flex", flexDirection: "row" }}>
-          <Typography variant="h6">Avaliações</Typography>
-          <Rating
-            value={avaliacao}
-            precision={0.5}
-            size="medium"
+          <Typography
+            variant="h4"
+            component="div"
+            align="left"
+            sx={{ padding: 1, margin: 1 }}
+          >
+            {title}
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            align="justify"
             sx={{
-              alignItems: "center",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              padding: 1,
+              margin: 1,
             }}
-            readOnly
+          >
+            {description}
+          </Typography>
+        </CardContent>
+      </Container>
+
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          padding: 0,
+          margin: 0,
+        }}
+      >
+        <Button variant="contained" size="medium">
+          Entrar em contato
+        </Button>
+      </Container>
+
+      <Container sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
+        <Typography variant="h6">Perguntas</Typography>
+        <QuestionForm />
+      </Container>
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyItems: "left",
+          minWidth: "80%",
+        }}
+      >
+        {questionAnswers.map((item) => (
+          <QuestionAnswerCard
+            item={item.id}
+            question={item.question}
+            answer={item.answer}
+            dateQuestion={item.dateQuestion}
+            dateAnswer={item.dateAnswer}
           />
-        </Container>
-        <Container
+        ))}
+      </Container>
+      <Container sx={{ display: "flex", flexDirection: "row", mt: 3 }}>
+        <Typography variant="h6">Avaliações</Typography>
+        <Rating
+          value={avaliacao}
+          precision={0.5}
+          size="medium"
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyItems: "left",
-            minWidth: "80%",
+            alignItems: "center",
           }}
-        >
-          {evaluations.map((e) => (
-            <EvaluationCard
-              avaliacao={e.avaliacao}
-              description={e.description}
-              title={e.title}
-            />
-          ))}
-        </Container>
-      </Card>
-    </>
+          readOnly
+        />
+      </Container>
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyItems: "left",
+          minWidth: "80%",
+        }}
+      >
+        {evaluations.map((e) => (
+          <EvaluationCard
+            avaliacao={e.avaliacao}
+            description={e.description}
+            title={e.title}
+          />
+        ))}
+      </Container>
+    </Card>
   );
 }

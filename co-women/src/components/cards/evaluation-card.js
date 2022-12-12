@@ -7,7 +7,8 @@ const cardStyle = {
   flexDirection: "column",
   alignItems: "left",
   justifyContent: "left",
-  paddingInline: "10vh",
+  padding: 3,
+  margin: 2
 };
 
 export default function EvaluationCard({ id, title, description, avaliacao }) {

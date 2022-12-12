@@ -1,4 +1,4 @@
-import { Button, Card, Grid, TextField } from "@mui/material";
+import { Button, Card, TextField } from "@mui/material";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -6,9 +6,9 @@ const cardStyle = {
   verticalAlign: "bottom",
   display: "flex",
   flexDirection: "column",
-  alignItems: "left",
-  justifyContent: "left",
-  paddingInline: "10vh",
+  maxWidth: "350px",
+  padding: 1,
+  margin: 1,
 };
 
 export default function QuestionForm() {
@@ -29,25 +29,19 @@ export default function QuestionForm() {
 
   return (
     <Card style={cardStyle} component="form" onSubmit={handleSubmit}>
-      <Grid container padding="3px" xs={12}>
-        <Grid item xs={12}>
-          <TextField
-            multiline
-            minRows={2}
-            maxRows={2}
-            placeholder="Insira sua pergunta"
-            style={{ minWidth: "50%" }}
-            inputProps={{ maxLength: 150 }}
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <Button variant="contained" size="small" type="submit">
-            Enviar pergunta
-          </Button>
-        </Grid>
-      </Grid>
+      <TextField
+        multiline
+        minRows={2}
+        maxRows={2}
+        placeholder="Insira sua pergunta"
+        sx={{ marginBottom: 1 }}
+        inputProps={{ maxLength: 150 }}
+        value={question}
+        onChange={(e) => setQuestion(e.target.value)}
+      />
+      <Button variant="contained" size="small" type="submit">
+        Enviar pergunta
+      </Button>
     </Card>
   );
 }

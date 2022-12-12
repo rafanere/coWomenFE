@@ -21,7 +21,7 @@ const style = {
 
 export default function EvaluationModal() {
   const [open, setOpen] = useState(false);
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState(0);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -31,7 +31,7 @@ export default function EvaluationModal() {
     e.preventDefault();
     let formErrors = false;
 
-    if (rating < 1) {
+    if (rating < 0.5) {
       formErrors = true;
       toast.error("Selecione o número de estrelas para avaliação");
     }
@@ -68,6 +68,7 @@ export default function EvaluationModal() {
               </Typography>
               <Rating
                 value={rating}
+                precision={0.5}
                 onChange={(e) => setRating(e.target.value)}
               />
             </Container>

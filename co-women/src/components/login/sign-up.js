@@ -3,7 +3,6 @@ import {
   Container,
   FormControl,
   FormControlLabel,
-  FormLabel,
   Radio,
   RadioGroup,
   TextField,
@@ -21,6 +20,9 @@ const style = {
   alignItems: "left",
   justifyContent: "left",
   paddingInline: "10vh",
+  width: "450px",
+  margin: 1,
+  padding: 1,
 };
 
 export default function SignUp() {
@@ -59,26 +61,22 @@ export default function SignUp() {
   return (
     <>
       <Container component="form" sx={style} noValidate onSubmit={handleSubmit}>
-        <Typography gutterBottom variant="h6" component="div" align="left">
-          Deseja se cadastrar?
+        <Typography gutterBottom variant="subtitle1" component="div" align="left">
+          Deseja se cadastrar? Selecione seu perfil e preencha os campos abaixo
         </Typography>
         <FormControl>
-          <RadioGroup
-            row
-            aria-labelledby="radio-group"
-            defaultValue="cliente"
-            la
-          >
-            <FormLabel id="radio-group">Perfil: </FormLabel>
+          <RadioGroup row defaultValue="cliente" sx={{ alignItems: "center" }}>
             <FormControlLabel
               value="cliente"
-              control={<Radio />}
+              control={<Radio size="small" />}
               label="Cliente"
+              componentsProps={{ typography: { fontSize: 14 } }}
             />
             <FormControlLabel
               value="prestadora"
-              control={<Radio />}
+              control={<Radio size="small" />}
               label="Prestadora de serviço"
+              componentsProps={{ typography: { fontSize: 14 } }}
             />
           </RadioGroup>
         </FormControl>
@@ -86,7 +84,7 @@ export default function SignUp() {
           required
           label="Nome"
           type="text"
-          style={{ maxWidth: "400px" }}
+          sx={{ maxWidth: "400px", mb: 1 }}
           inputProps={{ maxLength: 50 }}
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -95,7 +93,7 @@ export default function SignUp() {
           required
           label="CPF/CNPJ"
           type="text"
-          style={{ maxWidth: "180px" }}
+          sx={{ maxWidth: "180px", mb: 1 }}
           inputProps={{ maxLength: 19 }}
           value={cpfCnpj}
           onChange={(e) => {
@@ -111,7 +109,7 @@ export default function SignUp() {
           required
           label="Email"
           type="email"
-          style={{ maxWidth: "350px" }}
+          sx={{ maxWidth: "400px", mb: 1 }}
           inputProps={{ maxLength: 50 }}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -120,13 +118,16 @@ export default function SignUp() {
           required
           label="Senha"
           type="password"
+          sx={{ maxWidth: "400px", mb: 1 }}
           inputProps={{ maxLength: 50 }}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button variant="contained" type="submit">
-          Cadastrar
-        </Button>
+        <Container sx={{ display: "flex", justifyContent: "center" }}>
+          <Button variant="contained" type="submit">
+            Cadastrar
+          </Button>
+        </Container>
       </Container>
     </>
   );
