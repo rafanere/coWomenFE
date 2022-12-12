@@ -27,6 +27,7 @@ const style = {
 
 export default function SignUp() {
   const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [cpfCnpj, setCpfCnpj] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,9 +37,14 @@ export default function SignUp() {
 
     let formErrors = false;
 
-    if (name.length < 3) {
+    if (name.length < 2) {
       formErrors = true;
-      toast.error("Nome deve ter pelo menos 3 caracteres");
+      toast.error("Nome deve ter pelo menos 2 caracteres");
+    }
+
+    if (lastName.length < 2) {
+      formErrors = true;
+      toast.error("Sobrenome deve ter pelo menos 2 caracteres");
     }
 
     if (cpfCnpj.length < 1) {
@@ -88,6 +94,15 @@ export default function SignUp() {
           inputProps={{ maxLength: 50 }}
           value={name}
           onChange={(e) => setName(e.target.value)}
+        />
+        <TextField
+          required
+          label="Sobrenome"
+          type="text"
+          sx={{ maxWidth: "400px", mb: 1 }}
+          inputProps={{ maxLength: 50 }}
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
         />
         <TextField
           required
