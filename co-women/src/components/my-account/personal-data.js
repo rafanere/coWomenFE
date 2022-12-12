@@ -1,8 +1,8 @@
-import { Box, Button, CardMedia, Grid, TextField } from "@mui/material";
-import { CenteredContainer } from "../../styles/centered-container";
+import { Box, Grid, TextField } from "@mui/material";
 
 const txt = {
-  nome: "Sandra Nina Raimunda Barros",
+  nome: "Sandra Nina",
+  sobrenome: "Raimunda Barros",
   cpf: "44.245.896/0001-44",
   email: "sandra_nina_barros@netsite.com.br",
   descricao:
@@ -29,7 +29,16 @@ export default function PersonalData() {
               type="text"
               value={txt.nome}
               variant="standard"
-              style={{ maxWidth: "400px" }}
+              sx={{ maxWidth: "400px", mb: 1 }}
+              inputProps={{ maxLength: 50 }}
+            />
+            <TextField
+              disabled
+              label="Sobrenome"
+              type="text"
+              value={txt.sobrenome}
+              variant="standard"
+              sx={{ maxWidth: "400px", mb: 1 }}
               inputProps={{ maxLength: 50 }}
             />
             <TextField
@@ -38,7 +47,7 @@ export default function PersonalData() {
               type="text"
               value={txt.cpf}
               variant="standard"
-              style={{ maxWidth: "180px" }}
+              sx={{ maxWidth: "180px", mb: 1 }}
               inputProps={{ maxLength: 20 }}
             />
             <TextField
@@ -47,27 +56,11 @@ export default function PersonalData() {
               type="email"
               value={txt.email}
               variant="standard"
-              style={{ maxWidth: "350px" }}
+              sx={{ maxWidth: "350px", mb: 1 }}
               inputProps={{ maxLength: 50 }}
             />
-            <TextField
-              disabled
-              label="Descrição"
-              multiline
-              minRows={4}
-              maxRows={4}
-              value={txt.descricao}
-              variant="standard"
-              inputProps={{ maxLength: 200 }}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <CardMedia component="img" image={txt.imagem} />
           </Grid>
         </Grid>
-        <CenteredContainer>
-          <Button variant="contained">Editar</Button>
-        </CenteredContainer>
       </Box>
     </>
   );
