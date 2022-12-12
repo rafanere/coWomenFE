@@ -30,6 +30,7 @@ export default function PersonalData() {
               value={txt.nome}
               variant="standard"
               style={{ maxWidth: "400px" }}
+              inputProps={{ maxLength: 50 }}
             />
             <TextField
               disabled
@@ -38,6 +39,7 @@ export default function PersonalData() {
               value={txt.cpf}
               variant="standard"
               style={{ maxWidth: "180px" }}
+              inputProps={{ maxLength: 14 }}
             />
             <TextField
               disabled
@@ -46,14 +48,17 @@ export default function PersonalData() {
               value={txt.email}
               variant="standard"
               style={{ maxWidth: "350px" }}
+              inputProps={{ maxLength: 50 }}
             />
             <TextField
               disabled
               label="Descrição"
               multiline
+              minRows={4}
               maxRows={4}
               value={txt.descricao}
               variant="standard"
+              inputProps={{ maxLength: 200 }}
             />
           </Grid>
           <Grid item xs={4}>

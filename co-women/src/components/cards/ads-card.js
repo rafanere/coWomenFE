@@ -81,10 +81,7 @@ export default function AdsCard({
       <CenteredContainer>
         <CardActions>
           <Button variant="contained" size="small">
-            Detalhes
-          </Button>
-          <Button variant="contained" size="small">
-            Contato
+            Ver detalhes
           </Button>
         </CardActions>
       </CenteredContainer>
