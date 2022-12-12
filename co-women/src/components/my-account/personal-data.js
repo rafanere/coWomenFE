@@ -39,7 +39,7 @@ export default function PersonalData() {
               value={txt.cpf}
               variant="standard"
               style={{ maxWidth: "180px" }}
-              inputProps={{ maxLength: 14 }}
+              inputProps={{ maxLength: 20 }}
             />
             <TextField
               disabled
