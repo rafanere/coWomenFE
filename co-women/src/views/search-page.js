@@ -3,17 +3,16 @@ import { Container } from "@mui/system";
 import { React, useEffect, useState } from "react";
 import AdsCard from "../components/cards/ads-card";
 import SearchBar from "../components/search-bar/search-bar";
-import { adsService } from "../services/ads-service";
+import { allServices } from "../services/all-services";
 
 export default function SearchPage() {
   const [ads, setAds] = useState([]);
 
-  const fetchAds = async () => {
-    const { data } = await adsService.getService();
-    setAds(data);
-  };
-
   useEffect(() => {
+    async function fetchAds() {
+      const data  = await allServices.getAllAds();
+      setAds(data);
+    };
     fetchAds();
   }, []);
 

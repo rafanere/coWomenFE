@@ -1,6 +1,8 @@
 import { Button, Container, Link, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import axios from "axios";
+import decodeToken from "../../utils/decode";
 
 const style = {
   verticalAlign: "bottom",
@@ -11,7 +13,7 @@ const style = {
   paddingInline: "10vh",
   width: "450px",
   margin: 1,
-  padding: 1
+  padding: 1,
 };
 
 export default function SignIn() {
@@ -33,6 +35,19 @@ export default function SignIn() {
     }
 
     if (formErrors) return;
+
+    axios
+      .post("https://cowomenbe.onrender.com/users/login", { email, password })
+      .then((response) => {
+        toast.success("Login efetuado com sucesso!");
+        const token = response.data.accessToken;
+        localStorage.setItem("token", token);
+        localStorage.setItem("userId", decodeToken(token).id);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.response.data.msg);
+      });
   }
 
   return (
@@ -59,8 +74,14 @@ export default function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
           sx={{ mb: 1 }}
         />
-        <Container sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <Button variant="contained" type="submit" sx={{mr: 1}}>
+        <Container
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Button variant="contained" type="submit" sx={{ mr: 1 }}>
             Logar
           </Button>
           <Link href="#">Esqueci minha senha</Link>
