@@ -9,13 +9,10 @@ import LoginPage from "./views/login-page";
 import AdsDetailsPage from "./views/ads-details-page";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
-import { Provider } from "react-redux";
-import store from "./store";
 
 function App() {
   return (
     <div className="App">
-      <Provider store={store}>
         <Router>
           <Header />
           <Routes>
@@ -27,7 +24,6 @@ function App() {
           </Routes>
           <ToastContainer position="top-right" autoClose={5000} />
         </Router>
-      </Provider>
     </div>
   );
 }
