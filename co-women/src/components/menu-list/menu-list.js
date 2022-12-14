@@ -19,10 +19,17 @@ export default function MenuList() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleLogout = () => {
+    localStorage.clear();
+  };
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
       <FormLabel>Olá, Fulana!</FormLabel>
-      <IconButton onClick={handleClick} size="small" sx={{ ml: 2, margin: "0"}}>
+      <IconButton
+        onClick={handleClick}
+        size="small"
+        sx={{ ml: 2, margin: "0" }}
+      >
         <Avatar sx={{ width: 32, height: 32 }}></Avatar>
       </IconButton>
       <Menu
@@ -42,12 +49,14 @@ export default function MenuList() {
             Minha Conta
           </MenuItem>
         </Link>
-        <MenuItem>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Sair
-        </MenuItem>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <MenuItem onClick={handleLogout}>
+            <ListItemIcon>
+              <Logout fontSize="small" />
+            </ListItemIcon>
+            Sair
+          </MenuItem>
+        </Link>
       </Menu>
     </Box>
   );

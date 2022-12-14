@@ -12,6 +12,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { isEmail } from "validator";
 import { maskBr } from "js-brasil";
+import axios from "../../services/axios";
 
 const style = {
   verticalAlign: "bottom",
@@ -32,7 +33,7 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     let formErrors = false;
@@ -56,18 +57,41 @@ export default function SignUp() {
       formErrors = true;
       toast.error("Preencha o campo Email com um email válido");
     }
-    if (password.length < 6) {
+    if (password.length < 3) {
       formErrors = true;
-      toast.error("Senha deve ter pelo menos 6 caracteres");
+      toast.error("Senha deve ter pelo menos 3 caracteres");
     }
 
     if (formErrors) return;
+
+    axios
+      .post("https://cowomenbe.onrender.com/users/create", {
+        name: name,
+        lastname: lastName,
+        cpfcnpj: cpfCnpj,
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        toast.success("Usuária criada com sucesso!");
+        console.log(response.data);
+        localStorage.setItem("token", response.data.accessToken);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.response.data.msg);
+      });
   }
 
   return (
     <>
       <Container component="form" sx={style} noValidate onSubmit={handleSubmit}>
-        <Typography gutterBottom variant="subtitle1" component="div" align="left">
+        <Typography
+          gutterBottom
+          variant="subtitle1"
+          component="div"
+          align="left"
+        >
           Deseja se cadastrar? Selecione seu perfil e preencha os campos abaixo
         </Typography>
         <FormControl>

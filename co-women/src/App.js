@@ -9,21 +9,25 @@ import LoginPage from "./views/login-page";
 import AdsDetailsPage from "./views/ads-details-page";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
+import { Provider } from "react-redux";
+import store from "./store";
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/my-account" element={<MyAccount />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/ads-details" element={<AdsDetailsPage />} />
-        </Routes>
-        <ToastContainer position="top-right" autoClose={5000}/>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/my-account" element={<MyAccount />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/ads-details" element={<AdsDetailsPage />} />
+          </Routes>
+          <ToastContainer position="top-right" autoClose={5000} />
+        </Router>
+      </Provider>
     </div>
   );
 }
