@@ -12,7 +12,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { isEmail } from "validator";
 import { maskBr } from "js-brasil";
-import axios from "../../services/axios";
+import axios from "axios";
 
 const style = {
   verticalAlign: "bottom",
