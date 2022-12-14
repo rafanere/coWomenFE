@@ -6,7 +6,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ChatIcon from "@mui/icons-material/Chat";
 import EventIcon from "@mui/icons-material/Event";
 import LockIcon from "@mui/icons-material/Lock";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import PersonalData from "./personal-data";
 import ServiceCard from "../cards/service-card";
 
@@ -68,7 +68,7 @@ export default function UserAccount() {
     setValue(newValue);
   };
 
-  return (
+  return localStorage.getItem("userIsLogged") ? (
     <Container
       sx={{
         boxShadow: 1,
@@ -100,7 +100,7 @@ export default function UserAccount() {
           >
             {serviceCards.map((c) => (
               <ServiceCard
-                id={(c.id)}
+                id={c.id}
                 title={c.nome}
                 image={c.imagem}
                 status={c.status}
@@ -121,5 +121,9 @@ export default function UserAccount() {
         </Container>
       </TabPanel>
     </Container>
+  ) : (
+    <Typography variant="h5" sx={{ m: 2 }}>
+      Você precisa estar logada para ver essa página
+    </Typography>
   );
 }

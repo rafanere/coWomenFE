@@ -1,4 +1,4 @@
-import { InputLabel } from "@mui/material";
+import { InputLabel, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import { React, useEffect, useState } from "react";
 import AdsCard from "../components/cards/ads-card";
@@ -10,9 +10,9 @@ export default function SearchPage() {
 
   useEffect(() => {
     async function fetchAds() {
-      const data  = await allServices.getAllAds();
+      const data = await allServices.getAllAds();
       setAds(data);
-    };
+    }
     fetchAds();
   }, []);
 
@@ -29,15 +29,21 @@ export default function SearchPage() {
           rowGap: "2vh",
         }}
       >
-        {ads.map((a) => (
-          <AdsCard
-            id={a._id}
-            title={a.title}
-            description={a.description}
-            image={a.image}
-            avaliacao={a.avaliacao}
-          />
-        ))}
+        {ads.length > 0 ? (
+          ads.map((a) => (
+            <AdsCard
+              id={a._id}
+              title={a.title}
+              description={a.description}
+              image={a.image}
+              avaliacao={a.avaliacao}
+            />
+          ))
+        ) : (
+          <Typography variant="h5">
+            Você precisa estar logada para ver os anúncios cadastrados
+          </Typography>
+        )}
       </Container>
     </>
   );

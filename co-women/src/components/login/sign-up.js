@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { isEmail } from "validator";
 import { maskBr } from "js-brasil";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 const style = {
   verticalAlign: "bottom",
@@ -32,6 +33,7 @@ export default function SignUp() {
   const [cpfCnpj, setCpfCnpj] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -73,9 +75,14 @@ export default function SignUp() {
         password: password,
       })
       .then((response) => {
-        toast.success("Usuária criada com sucesso!");
-        console.log(response.data);
-        localStorage.setItem("token", response.data.accessToken);
+        toast.success("Usuária criada com sucesso! Redirecionando para a página principal");
+        const token = response.data.accessToken;
+        console.log("Atualizado o token");
+        localStorage.setItem("token", token);
+        localStorage.setItem("userIsLogged", true);
+        navigate("/");
+        window.location.reload();
+        
       })
       .catch((error) => {
         console.log(error);
