@@ -2,7 +2,7 @@ import { Button, Container, Link, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
-import decodeToken from "../../utils/decode";
+import { useNavigate } from "react-router";
 
 const style = {
   verticalAlign: "bottom",
@@ -19,9 +19,11 @@ const style = {
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
+    localStorage.clear();
 
     let formErrors = false;
 
@@ -38,11 +40,13 @@ export default function SignIn() {
 
     axios
       .post("https://cowomenbe.onrender.com/users/login", { email, password })
-      .then((response) => {
-        toast.success("Login efetuado com sucesso!");
+      .then(async (response) => {
+        toast.success("Login efetuado com sucesso! Redirecionando para a página principal");
         const token = response.data.accessToken;
         localStorage.setItem("token", token);
-        localStorage.setItem("userId", decodeToken(token).id);
+        localStorage.setItem("userIsLogged", true);
+        navigate("/");
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
@@ -84,6 +88,7 @@ export default function SignIn() {
           <Button variant="contained" type="submit" sx={{ mr: 1 }}>
             Logar
           </Button>
+
           <Link href="#">Esqueci minha senha</Link>
         </Container>
       </Container>

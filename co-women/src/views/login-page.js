@@ -1,10 +1,14 @@
 import * as React from "react";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import SignUp from "../components/login/sign-up";
 import SignIn from "../components/login/sign-in";
 
 export default function LoginPage() {
-  return (
+  return localStorage.getItem("userIsLogged") ? (
+    <Typography variant="h5" sx={{ m: 2 }}>
+      Você já está logada!
+    </Typography>
+  ) : (
     <>
       <Container
         sx={{
