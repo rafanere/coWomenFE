@@ -57,6 +57,14 @@ export default function AdsDetails({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [questions, setQuestions] = useState([]);
+  async function getQuestions() {
+    await allServices.getQuestions(id).then((questions) => {
+      setQuestions(questions);
+      console.log("questions", questions);
+    });
+  }
+
   return (
     <Card
       sx={{
@@ -151,15 +159,6 @@ export default function AdsDetails({
       </Container>
       <Container sx={{ display: "flex", flexDirection: "row", mt: 3 }}>
         <Typography variant="h6">Avaliações</Typography>
-        <Rating
-          value={avaliacao}
-          precision={0.5}
-          size="medium"
-          sx={{
-            alignItems: "center",
-          }}
-          readOnly
-        />
       </Container>
       <Container
         sx={{
@@ -169,15 +168,21 @@ export default function AdsDetails({
           minWidth: "80%",
         }}
       >
-        {evaluation.map((e) => (
-          <EvaluationCard
-            avaliacao={e.stars}
-            description={e.description}
-            title={e.idUser}
-            date={moment(e.date).format('DD/MM/YYYY')}
-            
-          />
-        ))}
+        {evaluation.length > 0 ? (
+          evaluation.map((e) => (
+            <EvaluationCard
+              avaliacao={e.stars}
+              description={e.description}
+              title={e.idUser}
+              date={moment(e.date).format('DD/MM/YYYY')}
+              />
+        ))
+        ) : (
+          <Typography variant="h5">
+            Este anúncio ainda não contém avaliações.
+          </Typography>
+        )}
+
       </Container>
     </Card>
   );
