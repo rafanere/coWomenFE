@@ -21,19 +21,13 @@ export default function MenuList() {
   const [userIsLogged, setUserIsLogged] = useState(token !== null);
   const [userName, setUserName] = useState("");
   const navigate = useNavigate();
-  console.log("Dentro do menu-list userIsLogged ->", userIsLogged);
 
   useEffect(() => {
     async function fetchLogged() {
       setUserIsLogged(localStorage.getItem("userIsLogged"));
-      console.log(
-        "Dentro do useEffect do menu-list userIsLogged ->",
-        userIsLogged
-      );
       if (userIsLogged) {
         const data = await allServices.getLoggedUserData();
         setUserName(data.name);
-        console.log("Atualizado o username no menu-list", data.name);
       } else {
         setUserName("");
       }
@@ -54,7 +48,7 @@ export default function MenuList() {
     localStorage.getItem("userIsLogged", false);
     setUserName("");
     setUserIsLogged(false);
-    navigate("/login")
+    navigate("/login");
     window.location.reload();
   };
 

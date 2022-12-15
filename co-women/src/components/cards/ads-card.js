@@ -8,6 +8,8 @@ import {
   Rating,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { allServices } from "../../services/all-services";
 import { CenteredContainer } from "../../styles/centered-container";
 
 const cardStyle = {
@@ -16,7 +18,10 @@ const cardStyle = {
   maxHeight: "200px",
   alignItems: "center",
   justify: "center",
-  padding: "2vh",
+  paddingTop: "2vh",
+  paddingLeft: "2vh",
+  paddingBottom: "3px",
+  paddingRight: "3px",
 };
 
 const cardMediaStyle = {
@@ -25,30 +30,33 @@ const cardMediaStyle = {
   padding: "3px",
 };
 
-export default function AdsCard({
-  id,
-  title,
-  description,
-  image,
-  avaliacao,
-}) {
+export default function AdsCard({ id, title, description, image, avaliacao }) {
+  const navigate = useNavigate();
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await allServices.getAdDetails(id);
+    navigate("/ads-details");
+  }
+
   return (
     <Card
+    id="card"
+      key={{ id }}
       className="App-card"
       style={cardStyle}
-      sx={{ display: "flex", flexWrap: "wrap" }}
+      sx={{ display: "flex", flexWrap: "wrap", pb: "1px" }}
     >
-      <Grid container padding="3px" spacing={2}>
+      <Grid container padding="3px" spacing={2} sx={{p: "1px"}}>
         <Grid item xs={4} style={cardMediaStyle}>
-          <CardMedia component="img" image={image} title="teste do teste" />
+          <CardMedia component="img" image={image} sx ={{maxHeight: "60px"}} />
           <Rating value={avaliacao} precision={0.5} size="small" readOnly />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={8} sx={{p: "1px"}}>
           <CardContent
             sx={{
-              padding: "3px",
+              padding: "1px",
               "&:last-child": {
-                paddingBottom: "3px",
+                paddingBottom: "1px",
               },
             }}
           >
@@ -69,7 +77,7 @@ export default function AdsCard({
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 display: "-webkit-box",
-                WebkitLineClamp: "5",
+                WebkitLineClamp: "3",
                 WebkitBoxOrient: "vertical",
               }}
             >
@@ -80,7 +88,12 @@ export default function AdsCard({
       </Grid>
       <CenteredContainer>
         <CardActions>
-          <Button variant="contained" size="small">
+          <Button
+            variant="contained"
+            size="small"
+            type="submit"
+            onClick={handleSubmit}
+          >
             Ver detalhes
           </Button>
         </CardActions>
