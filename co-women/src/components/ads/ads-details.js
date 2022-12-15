@@ -57,14 +57,6 @@ export default function AdsDetails({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [questions, setQuestions] = useState([]);
-  async function getQuestions() {
-    await allServices.getQuestions(id).then((questions) => {
-      setQuestions(questions);
-      console.log("questions", questions);
-    });
-  }
-
   return (
     <Card
       sx={{
