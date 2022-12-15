@@ -4,7 +4,6 @@ import {
   CardContent,
   CardMedia,
   Container,
-  Rating,
   Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";

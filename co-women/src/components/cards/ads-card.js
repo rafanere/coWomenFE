@@ -5,7 +5,6 @@ import {
   CardContent,
   CardMedia,
   Grid,
-  Rating,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
