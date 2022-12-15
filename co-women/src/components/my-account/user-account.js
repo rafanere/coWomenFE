@@ -9,6 +9,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import { Box, Container, Typography } from "@mui/material";
 import PersonalData from "./personal-data";
 import ServiceCard from "../cards/service-card";
+import moment from "moment";
 
 const serviceCards = [
   {
@@ -104,7 +105,7 @@ export default function UserAccount() {
                 title={c.nome}
                 image={c.imagem}
                 status={c.status}
-                date={c.data}
+                date={moment(c.data).format('DD/MMMM/YYYY HH:mm:ss')}
               />
             ))}
           </Container>

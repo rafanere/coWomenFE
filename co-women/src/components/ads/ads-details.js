@@ -12,6 +12,7 @@ import { allServices } from "../../services/all-services";
 import EvaluationCard from "../cards/evaluation-card";
 import QuestionAnswerCard from "../cards/question-answer-card";
 import QuestionForm from "../question/question-form";
+import moment from 'moment';
 
 const questionAnswers = [
   {
@@ -143,8 +144,8 @@ export default function AdsDetails({
             item={item.id}
             question={item.question}
             answer={item.answer}
-            dateQuestion={item.dateQuestion}
-            dateAnswer={item.dateAnswer}
+            dateQuestion={moment(item.dateQuestion).format('DD/MM/YYYY')}
+            dateAnswer={moment(item.dateAnswer).format('DD/MM/YYYY')}
           />
         ))}
       </Container>
@@ -173,7 +174,8 @@ export default function AdsDetails({
             avaliacao={e.stars}
             description={e.description}
             title={e.idUser}
-            date={e.date}
+            date={moment(e.date).format('DD/MM/YYYY')}
+            
           />
         ))}
       </Container>
