@@ -49,6 +49,34 @@ export class allServices {
     return data;
   }
 
+  static async getAdQuestions(id) {
+    let data = "";
+    await axios
+      .get(`https://cowomenbe.onrender.com/question/?token=${USER_TOKEN}`)
+      .then((response) => {
+        data = response.data.filter((item) => item.idAds === id)
+        console.log("data", data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return data;
+  }
+
+  static async getAdAnswer(id) {
+    let data = "";
+    await axios
+      .get(`https://cowomenbe.onrender.com/answer/?token=${USER_TOKEN}`)
+      .then((response) => {
+        data = response.data.filter((item) => item.idAds === id)
+        console.log("data_getAdAnswer", data)
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
+    return data;
+  }
+
   static async getLoggedUserData() {
     const userId = decodeToken(USER_TOKEN).id;
     localStorage.setItem("userId", userId);

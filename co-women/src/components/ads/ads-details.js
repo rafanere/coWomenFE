@@ -13,6 +13,7 @@ import QuestionAnswerCard from "../cards/question-answer-card";
 import QuestionForm from "../question/question-form";
 import moment from 'moment';
 
+/*
 const questionAnswers = [
   {
     id: 0,
@@ -36,6 +37,7 @@ const questionAnswers = [
     dateAnswer: "01/03/2022",
   },
 ];
+*/
 
 export default function AdsDetails({
   id,
@@ -53,6 +55,26 @@ export default function AdsDetails({
   }
   useEffect(() => {
     getEvaluation();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const [questions, setQuestions] = useState([]);
+  async function getQuestions() {
+    await allServices.getAdQuestions(id).then((questions) => {
+      setQuestions(questions);
+      console.log("questions", questions);
+    });
+  }
+  const [answers, setAnswers] = useState([]);
+  async function getAnswers() {
+    await allServices.getAdAnswer(id).then((answers) => {
+      setAnswers(answers);
+      console.log("answers", answers)
+    })
+  }
+  useEffect(() => {
+    getQuestions();
+    getAnswers();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -138,15 +160,22 @@ export default function AdsDetails({
           minWidth: "80%",
         }}
       >
-        {questionAnswers.map((item) => (
+        {questions.length > 0 ? (
+        questions.map((question, answer) => (
           <QuestionAnswerCard
-            item={item.id}
-            question={item.question}
-            answer={item.answer}
-            dateQuestion={moment(item.dateQuestion).format('DD/MM/YYYY')}
-            dateAnswer={moment(item.dateAnswer).format('DD/MM/YYYY')}
+            item={question.id}
+            question={question.question}
+            dateQuestion={moment(question.dateQuestion).format('DD/MM/YYYY')}
+            answer={answer.answer}
+            dateAnswer={moment(answer.dateAnswer).format('DD/MM/YYYY')}
           />
-        ))}
+        ))
+      ) : (
+        <Typography variant="h5">
+        Este anúncio ainda não contém perguntas.
+        </Typography>
+      )}
+
       </Container>
       <Container sx={{ display: "flex", flexDirection: "row", mt: 3 }}>
         <Typography variant="h6">Avaliações</Typography>
