@@ -1,4 +1,5 @@
 import { Button, Card, TextField } from "@mui/material";
+import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -25,6 +26,22 @@ export default function QuestionForm() {
     }
 
     if (formErrors) return;
+    const token = localStorage.getItem("token");
+    axios
+      .post(`https://cowomenbe.onrender.com/question/?token=${token}`, {
+        question: question,
+        idUser: localStorage.getItem("userId"),
+        idAds: localStorage.getItem("AdId"),
+      })
+      .then((response) => {
+        console.log("response", response);
+        setQuestion("");
+        toast.success("Pergunta cadastrada com sucesso!");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.success("Erro ao cadastrar pergunta");
+      });
   }
 
   return (

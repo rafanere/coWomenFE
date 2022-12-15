@@ -37,6 +37,7 @@ export class allServices {
 
   static async getLoggedUserData() {
     const userId = decodeToken(USER_TOKEN).id;
+    localStorage.setItem("userId", userId);
     let data = "";
     await axios
       .get(
