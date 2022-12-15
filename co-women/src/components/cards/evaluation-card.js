@@ -11,7 +11,7 @@ const cardStyle = {
   margin: 2
 };
 
-export default function EvaluationCard({ id, title, description, avaliacao }) {
+export default function EvaluationCard({ id, title, description, avaliacao, date }) {
   return (
     <Card style={cardStyle}>
       <Grid container padding="3px" xs={12}>
@@ -46,7 +46,7 @@ export default function EvaluationCard({ id, title, description, avaliacao }) {
               align="right"
               width={"100%"}
             >
-              dd/mm/aaaa
+              {date}
             </Typography>
           </SpacedContainer>
         </Grid>

@@ -7,31 +7,11 @@ import {
   Rating,
   Typography,
 } from "@mui/material";
+import { useEffect, useState } from "react";
+import { allServices } from "../../services/all-services";
 import EvaluationCard from "../cards/evaluation-card";
 import QuestionAnswerCard from "../cards/question-answer-card";
 import QuestionForm from "../question/question-form";
-
-const evaluations = [
-  {
-    id: 0,
-    title: "Fulaninha de Tal",
-    description: "Avaliação curta",
-    avaliacao: 4,
-  },
-  {
-    id: 1,
-    title: "Beltrana La La",
-    description: "Avaliação um pouco mais longa, mas ainda curta",
-    avaliacao: 1.3,
-  },
-  {
-    id: 2,
-    title: "Ciclana Ana",
-    description:
-      "ihsdhudh sdahuashudhu ashudh ahusdhusahu dhaushud ashuhu ashud huashud huasdhu ahsudhuashudhu ashud huashu ahushu ashuhaushuahudshuashudhuahud ahus dhuas huahusdh asudhuahusdhuahudshu ashu dhashud ahsu",
-    avaliacao: 3.5,
-  },
-];
 
 const questionAnswers = [
   {
@@ -64,6 +44,18 @@ export default function AdsDetails({
   image,
   avaliacao,
 }) {
+  const [evaluation, setEvaluation] = useState([]);
+  async function getEvaluation() {
+    await allServices.getAdEvaluations(id).then((evaluation) => {
+      setEvaluation(evaluation);
+      console.log("evaluation", evaluation);
+    });
+  }
+  useEffect(() => {
+    getEvaluation();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Card
       sx={{
@@ -86,7 +78,7 @@ export default function AdsDetails({
           component="img"
           title="foto do perfil"
           image={image}
-          sx={{ height: "100px", width: "100px", margin: 1}}
+          sx={{ height: "100px", width: "100px", margin: 1 }}
         />
         <CardContent
           sx={{
@@ -176,11 +168,12 @@ export default function AdsDetails({
           minWidth: "80%",
         }}
       >
-        {evaluations.map((e) => (
+        {evaluation.map((e) => (
           <EvaluationCard
-            avaliacao={e.avaliacao}
+            avaliacao={e.stars}
             description={e.description}
-            title={e.title}
+            title={e.idUser}
+            date={e.date}
           />
         ))}
       </Container>
