@@ -8,6 +8,8 @@ import {
   Rating,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { allServices } from "../../services/all-services";
 import { CenteredContainer } from "../../styles/centered-container";
 
 const cardStyle = {
@@ -25,22 +27,24 @@ const cardMediaStyle = {
   padding: "3px",
 };
 
-export default function AdsCard({
-  id,
-  title,
-  description,
-  image,
-  avaliacao,
-}) {
+export default function AdsCard({ id, title, description, image, avaliacao }) {
+  const navigate = useNavigate();
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await allServices.getAdDetails(id);
+    navigate("/ads-details");
+  }
+
   return (
     <Card
+      key={{ id }}
       className="App-card"
       style={cardStyle}
       sx={{ display: "flex", flexWrap: "wrap" }}
     >
       <Grid container padding="3px" spacing={2}>
         <Grid item xs={4} style={cardMediaStyle}>
-          <CardMedia component="img" image={image} title="teste do teste" />
+          <CardMedia component="img" image={image} sx ={{maxHeight: "60px"}} />
           <Rating value={avaliacao} precision={0.5} size="small" readOnly />
         </Grid>
         <Grid item xs={8}>
@@ -69,7 +73,7 @@ export default function AdsCard({
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 display: "-webkit-box",
-                WebkitLineClamp: "5",
+                WebkitLineClamp: "3",
                 WebkitBoxOrient: "vertical",
               }}
             >
@@ -80,7 +84,12 @@ export default function AdsCard({
       </Grid>
       <CenteredContainer>
         <CardActions>
-          <Button variant="contained" size="small">
+          <Button
+            variant="contained"
+            size="small"
+            type="submit"
+            onClick={handleSubmit}
+          >
             Ver detalhes
           </Button>
         </CardActions>

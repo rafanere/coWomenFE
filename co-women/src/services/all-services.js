@@ -17,6 +17,24 @@ export class allServices {
     return data;
   }
 
+  static async getAdDetails(id) {
+    let data = "";
+    await axios
+      .get(`https://cowomenbe.onrender.com/ads/${id}/?token=${USER_TOKEN}`)
+      .then((response) => {
+        data = response.data;
+        console.log("data", data)
+        localStorage.setItem("AdId", data._id);
+        localStorage.setItem("AdTitle", data.title);
+        localStorage.setItem("AdDescription", data.description);
+        localStorage.setItem("AdImage", data.image);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return data;
+  }
+
   static async getLoggedUserData() {
     const userId = decodeToken(USER_TOKEN).id;
     let data = "";
