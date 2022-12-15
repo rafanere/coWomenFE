@@ -11,7 +11,7 @@ const cardStyle = {
   margin: 2
 };
 
-export default function EvaluationCard({ id, title, description, avaliacao, date }) {
+export default function EvaluationCard({ description, avaliacao, date }) {
   return (
     <Card style={cardStyle}>
       <Grid container padding="3px" xs={12}>
@@ -24,8 +24,8 @@ export default function EvaluationCard({ id, title, description, avaliacao, date
               align="right"
               margin="0"
             >
-              {title}
-            </Typography>{" "}
+              Anônima   
+            </Typography>{"   "}
             <Rating
               value={avaliacao}
               precision={0.5}

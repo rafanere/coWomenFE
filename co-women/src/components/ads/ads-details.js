@@ -4,7 +4,6 @@ import {
   CardContent,
   CardMedia,
   Container,
-  Rating,
   Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -12,6 +11,7 @@ import { allServices } from "../../services/all-services";
 import EvaluationCard from "../cards/evaluation-card";
 import QuestionAnswerCard from "../cards/question-answer-card";
 import QuestionForm from "../question/question-form";
+import moment from 'moment';
 
 const questionAnswers = [
   {
@@ -143,22 +143,13 @@ export default function AdsDetails({
             item={item.id}
             question={item.question}
             answer={item.answer}
-            dateQuestion={item.dateQuestion}
-            dateAnswer={item.dateAnswer}
+            dateQuestion={moment(item.dateQuestion).format('DD/MM/YYYY')}
+            dateAnswer={moment(item.dateAnswer).format('DD/MM/YYYY')}
           />
         ))}
       </Container>
       <Container sx={{ display: "flex", flexDirection: "row", mt: 3 }}>
         <Typography variant="h6">Avaliações</Typography>
-        <Rating
-          value={avaliacao}
-          precision={0.5}
-          size="medium"
-          sx={{
-            alignItems: "center",
-          }}
-          readOnly
-        />
       </Container>
       <Container
         sx={{
@@ -168,14 +159,21 @@ export default function AdsDetails({
           minWidth: "80%",
         }}
       >
-        {evaluation.map((e) => (
-          <EvaluationCard
-            avaliacao={e.stars}
-            description={e.description}
-            title={e.idUser}
-            date={e.date}
-          />
-        ))}
+        {evaluation.length > 0 ? (
+          evaluation.map((e) => (
+            <EvaluationCard
+              avaliacao={e.stars}
+              description={e.description}
+              title={e.idUser}
+              date={moment(e.date).format('DD/MM/YYYY')}
+              />
+        ))
+        ) : (
+          <Typography variant="h5">
+            Este anúncio ainda não contém avaliações.
+          </Typography>
+        )}
+
       </Container>
     </Card>
   );

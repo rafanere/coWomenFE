@@ -5,7 +5,6 @@ import {
   CardContent,
   CardMedia,
   Grid,
-  Rating,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -49,7 +48,6 @@ export default function AdsCard({ id, title, description, image, avaliacao }) {
       <Grid container padding="3px" spacing={2} sx={{p: "1px"}}>
         <Grid item xs={4} style={cardMediaStyle}>
           <CardMedia component="img" image={image} sx ={{maxHeight: "60px"}} />
-          <Rating value={avaliacao} precision={0.5} size="small" readOnly />
         </Grid>
         <Grid item xs={8} sx={{p: "1px"}}>
           <CardContent
