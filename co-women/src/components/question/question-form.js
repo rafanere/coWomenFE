@@ -36,7 +36,9 @@ export default function QuestionForm() {
       .then((response) => {
         console.log("response", response);
         setQuestion("");
-        toast.success("Pergunta cadastrada com sucesso!");
+        toast.success(
+          "Pergunta cadastrada com sucesso! Ela será exibida quando for respondida pela prestadora de serviços"
+        );
       })
       .catch((error) => {
         console.log(error);
