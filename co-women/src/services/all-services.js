@@ -23,7 +23,6 @@ export class allServices {
       .get(`https://cowomenbe.onrender.com/ads/${id}/?token=${USER_TOKEN}`)
       .then((response) => {
         data = response.data;
-        console.log("data", data)
         localStorage.setItem("AdId", data._id);
         localStorage.setItem("AdTitle", data.title);
         localStorage.setItem("AdDescription", data.description);
@@ -40,8 +39,7 @@ export class allServices {
     await axios
       .get(`https://cowomenbe.onrender.com/rating/?token=${USER_TOKEN}`)
       .then((response) => {
-        data = response.data.filter((item) => item.idAds === id)
-        console.log("data", data)
+        data = response.data.filter((item) => item.idAds === id);
       })
       .catch((error) => {
         console.log(error);
@@ -49,32 +47,36 @@ export class allServices {
     return data;
   }
 
-  static async getAdQuestions(id) {
-    let data = "";
+  static async getQuestionsAndAnswers(id) {
+    let questionData = "";
+    let answerData = "";
     await axios
       .get(`https://cowomenbe.onrender.com/question/?token=${USER_TOKEN}`)
       .then((response) => {
-        data = response.data.filter((item) => item.idAds === id)
-        console.log("data", data)
+        questionData = response.data.filter((item) => item.idAds === id);
       })
       .catch((error) => {
         console.log(error);
       });
-    return data;
-  }
-
-  static async getAdAnswer(id) {
-    let data = "";
     await axios
       .get(`https://cowomenbe.onrender.com/answer/?token=${USER_TOKEN}`)
       .then((response) => {
-        data = response.data.filter((item) => item.idAds === id)
-        console.log("data_getAdAnswer", data)
+        answerData = response.data.filter((item) => item.idAds === id);
       })
       .catch((error) => {
         console.log(error);
-      }); 
-    return data;
+      });
+    return answerData.map((answer) => {
+      const question = questionData.find(
+        (question) => question._id === answer.idQuestion
+      );
+      return {
+        questionText: question.question,
+        questionDate: question.date,
+        answerText: answer.answer,
+        answerDate: answer.date,
+      };
+    });
   }
 
   static async getLoggedUserData() {
@@ -93,7 +95,7 @@ export class allServices {
         localStorage.setItem("email", data.email);
       })
       .catch((error) => {
-        console.log("Error getting user data")
+        console.log("Error getting user data");
         console.log(error);
       });
     return data;

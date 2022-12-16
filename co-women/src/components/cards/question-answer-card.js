@@ -21,7 +21,7 @@ export default function QuestionAnswerCard({
   return (
     <Card style={cardStyle} key={id}>
       <Grid container padding="3px" xs={12}>
-        <Grid item xs={8}>
+        <Grid item xs={9}>
           <SpacedContainer>
             <Typography
               gutterBottom
@@ -35,7 +35,7 @@ export default function QuestionAnswerCard({
             </Typography>
           </SpacedContainer>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <SpacedContainer>
             <Typography
               gutterBottom
@@ -48,7 +48,7 @@ export default function QuestionAnswerCard({
             </Typography>
           </SpacedContainer>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={9}>
           <SpacedContainer>
             <Typography
               gutterBottom
@@ -61,7 +61,7 @@ export default function QuestionAnswerCard({
             </Typography>
           </SpacedContainer>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <SpacedContainer>
             <Typography
               gutterBottom

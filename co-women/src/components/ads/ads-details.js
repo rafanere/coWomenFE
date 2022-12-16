@@ -11,33 +11,7 @@ import { allServices } from "../../services/all-services";
 import EvaluationCard from "../cards/evaluation-card";
 import QuestionAnswerCard from "../cards/question-answer-card";
 import QuestionForm from "../question/question-form";
-import moment from 'moment';
-
-/*
-const questionAnswers = [
-  {
-    id: 0,
-    question: "sihhasuauh sahua husahu sauh huashuahu shu?",
-    answer: "jasijisa asjiajisjaj sji aji",
-    dateQuestion: "01/01/2022",
-    dateAnswer: "01/01/2022",
-  },
-  {
-    id: 1,
-    question: "sihhasuauh sahua ?",
-    answer: "jasijisa asjiajisjaj sji aji",
-    dateQuestion: "01/02/2022",
-    dateAnswer: "01/02/2022",
-  },
-  {
-    id: 2,
-    question: "sahua husahu huashuahu shu?",
-    answer: "jasijisa",
-    dateQuestion: "01/03/2022",
-    dateAnswer: "01/03/2022",
-  },
-];
-*/
+import moment from "moment";
 
 export default function AdsDetails({
   id,
@@ -53,29 +27,19 @@ export default function AdsDetails({
       console.log("evaluation", evaluation);
     });
   }
-  useEffect(() => {
-    getEvaluation();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
-  const [questions, setQuestions] = useState([]);
-  async function getQuestions() {
-    await allServices.getAdQuestions(id).then((questions) => {
-      setQuestions(questions);
-      console.log("questions", questions);
+  const [answersQuestions, setAnswersQuestions] = useState([]);
+  async function getAnswersQuestions() {
+    await allServices.getQuestionsAndAnswers(id).then((answersQuestions) => {
+      setAnswersQuestions(answersQuestions);
+      console.log("answersQuestions no useEffect", answersQuestions);
     });
   }
-  const [answers, setAnswers] = useState([]);
-  async function getAnswers() {
-    await allServices.getAdAnswer(id).then((answers) => {
-      setAnswers(answers);
-      console.log("answers", answers)
-    })
-  }
+
   useEffect(() => {
-    getQuestions();
-    getAnswers();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    getAnswersQuestions();
+    getEvaluation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -149,8 +113,10 @@ export default function AdsDetails({
       </Container>
 
       <Container sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
-        <Typography variant="h6">Perguntas</Typography>
         <QuestionForm />
+        <Typography variant="h6" sx={{ pt: 2 }}>
+          Perguntas já respondidas
+        </Typography>
       </Container>
       <Container
         sx={{
@@ -160,22 +126,20 @@ export default function AdsDetails({
           minWidth: "80%",
         }}
       >
-        {questions.length > 0 ? (
-        questions.map((question, answer) => (
-          <QuestionAnswerCard
-            item={question.id}
-            question={question.question}
-            dateQuestion={moment(question.dateQuestion).format('DD/MM/YYYY')}
-            answer={answer.answer}
-            dateAnswer={moment(answer.dateAnswer).format('DD/MM/YYYY')}
-          />
-        ))
-      ) : (
-        <Typography variant="h5">
-        Este anúncio ainda não contém perguntas.
-        </Typography>
-      )}
-
+        {answersQuestions.length > 0 ? (
+          answersQuestions.map((item) => (
+            <QuestionAnswerCard
+              question={item.questionText}
+              dateQuestion={moment(item.questionDate).format("DD/MM/YYYY")}
+              answer={item.answerText}
+              dateAnswer={moment(item.answerDate).format("DD/MM/YYYY")}
+            />
+          ))
+        ) : (
+          <Typography variant="h5">
+            Nenhuma pergunta foi feita e/ou respondida ainda.
+          </Typography>
+        )}
       </Container>
       <Container sx={{ display: "flex", flexDirection: "row", mt: 3 }}>
         <Typography variant="h6">Avaliações</Typography>
@@ -194,15 +158,14 @@ export default function AdsDetails({
               avaliacao={e.stars}
               description={e.description}
               title={e.idUser}
-              date={moment(e.date).format('DD/MM/YYYY')}
-              />
-        ))
+              date={moment(e.date).format("DD/MM/YYYY")}
+            />
+          ))
         ) : (
           <Typography variant="h5">
-            Este anúncio ainda não contém avaliações.
+            Nenhuma avaliação foi feita ainda.
           </Typography>
         )}
-
       </Container>
     </Card>
   );
